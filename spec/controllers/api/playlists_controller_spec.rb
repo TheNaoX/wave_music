@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Api::PlaylistsController do
 
   before(:each) do 
+    @attrs = { name: 'That playlist' }
     @playlist = FactoryGirl.create(:playlist) 
     @song = FactoryGirl.create(:song)
     @playlist_song = PlaylistSong.create(song_id: @song.id, playlist_id: @playlist.id)
@@ -34,6 +35,18 @@ describe Api::PlaylistsController do
       get :show, id: @playlist.id
       ActiveSupport::JSON.decode(response.body)['playlist']['songs'].first['name'].should == @song.name
     end
+  end
+
+  context '#create' do
+    it 'Should create a playlist with songs' do
+      Playlist.destroy_all
+      post :create, playlist: @attrs
+      ActiveSupport::JSON.decode(response.body)['message'].should == 'Successfully created playlist...'
+      Playlist.first.name.should == "That playlist"
+    end
+  end
+
+  context '#add_songs' do
   end
 
 end

@@ -1,4 +1,6 @@
 class Playlist < ActiveRecord::Base
+
+  attr_accessible :name
   acts_as_api
 
   belongs_to :user

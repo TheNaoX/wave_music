@@ -19,4 +19,20 @@ class Api::PlaylistsController < ApplicationController
     end
   end
 
+  def create
+    @playlist = Playlist.new(params[:playlist])
+
+    if @playlist.save
+      render json: { status: 200, message: 'Successfully created playlist...'}
+    else
+      something_went_wrong
+    end
+  end
+
+  private
+
+  def something_went_wrong
+    render json: { status: 400, message: "We're sorry but something went wrong" }
+  end
+
 end
