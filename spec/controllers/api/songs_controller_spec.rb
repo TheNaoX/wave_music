@@ -10,7 +10,8 @@ describe Api::SongsController do
   context '#index' do
 
     it 'should get the list of songs as JSON' do
-      get :index
+      get :index, format: :json
+      ActiveSupport::JSON.decode(response.body)['songs'].first['name'].should == 'For whom the bell tolls'
     end
 
   end
