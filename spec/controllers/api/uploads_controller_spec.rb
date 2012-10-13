@@ -30,9 +30,11 @@ describe Api::UploadsController do
 
     it 'should upload a song if a file is sent' do
       post :create, song: @new_attrs
-      ActiveSupport::JSON.decode(response.body)['song'].should  == 1
+      @new_song = Song.last
+      ActiveSupport::JSON.decode(response.body)['song'].should == @new_song.id
+      @new_song.file.file.filename.should == @new_attrs[:file].original_filename.gsub(' ','_')
     end
-
+    
   end
 
 end
