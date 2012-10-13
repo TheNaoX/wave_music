@@ -47,6 +47,9 @@ describe Api::PlaylistsController do
   end
 
   context '#add_songs' do
+    it 'should add a song to the playlist' do
+      put :add_songs
+    end
   end
 
 end

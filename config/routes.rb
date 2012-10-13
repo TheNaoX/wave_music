@@ -11,7 +11,11 @@ R12Team455::Application.routes.draw do
         get :stream
       end
     end
-    resources :playlists, only: [:index, :show, :create]
+    resources :playlists, only: [:index, :show, :create] do
+      member do
+        put :add_songs
+      end
+    end
     resources :uploads, only: [:create]
   end
 
