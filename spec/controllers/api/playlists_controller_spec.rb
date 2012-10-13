@@ -25,6 +25,8 @@ describe Api::PlaylistsController do
       get :show, id: @playlist.id
       response.status.should be(200)
     end
+
+    pending 'Add more tests tomorrow here for test playlists have songs and stuff'
   end
 
 end
