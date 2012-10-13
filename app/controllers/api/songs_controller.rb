@@ -10,4 +10,13 @@ class Api::SongsController < ApplicationController
     end
   end
 
+  def show
+    begin
+      @song = Song.find params[:id]
+      render_for_api :music, json: @song
+    rescue
+      render json: { status: 404, message: 'Song not found...' }
+    end
+  end
+
 end

@@ -21,4 +21,17 @@ describe Api::SongsController do
     end
 
   end
+
+   context '#show' do
+     it 'should display only one song' do
+       get :show, id: @song.id
+       ActiveSupport::JSON.decode(response.body)['song']['name'].should == 'For whom the bell tolls'
+     end
+     
+     it 'should get an error if the song is not valid' do
+       get :show, id: 'not valid id'
+       ActiveSupport::JSON.decode(response.body)['message'].should == 'Song not found...'
+     end
+   end
+
 end
