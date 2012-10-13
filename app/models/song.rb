@@ -9,13 +9,23 @@ class Song < ActiveRecord::Base
   api_accessible :music do |t|
     t.add :id
     t.add :name
-    t.add :file
+    t.add :filename
+    t.add :url
   end
   
   api_accessible :as_playlist do |t|
     t.add :id
     t.add :name
-    t.add :file
+    t.add :filename
+    t.add :url
+  end
+
+  def url
+    self.file.url
+  end
+
+  def filename
+    self.file.filename
   end
 
 end

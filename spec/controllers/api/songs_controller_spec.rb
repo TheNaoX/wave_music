@@ -28,6 +28,11 @@ describe Api::SongsController do
        ActiveSupport::JSON.decode(response.body)['song']['name'].should == 'For whom the bell tolls'
      end
      
+     it 'should get the url of the song' do
+       get :show, id: @song.id
+       ActiveSupport::JSON.decode(response.body)['song']['url'].should == @song.file.url
+     end
+
      it 'should get an error if the song is not valid' do
        get :show, id: 'not valid id'
        ActiveSupport::JSON.decode(response.body)['message'].should == 'Song not found...'
