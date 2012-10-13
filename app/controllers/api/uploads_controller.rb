@@ -3,8 +3,13 @@ class Api::UploadsController < ApplicationController
   def create
     unless params[:song].nil?
 
-      file = File.open(params[:song][:file])
-      @song = Song.new(name: params[:song][:name], file: file)
+      unless params[:song][:file].class == String
+        @song = Song.new(params[:song])
+      else
+        binding.pry
+        file = File.open(params[:song][:file]) 
+        @song = Song.new(name: params[:song][:name], file: file)
+      end
       
       if @song.save
         render json: { status: :ok, message: "Successfully uploaded the song..." }
