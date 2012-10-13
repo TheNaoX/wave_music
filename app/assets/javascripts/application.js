@@ -14,4 +14,6 @@
 //= require libs/underscore
 //= require libs/backbone
 //= require main
+//= require app/models/song
+//= require app/models/playlist
 //= require_tree .

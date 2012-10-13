@@ -6,7 +6,6 @@ RB.UploadController = Backbone.View.extend({
     var xhr      = new XMLHttpRequest();
     var formPost = new FormData();
 
-
     formPost.append("file", data.file);
     formPost.append("name", data.name);
 
@@ -25,6 +24,7 @@ RB.UploadController = Backbone.View.extend({
 
   onComplete: function(upload){
     $("#fn-upload-progress").text("100% Complete");
+    this.collection.fetch();
   }
 
 });
