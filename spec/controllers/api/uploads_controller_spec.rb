@@ -8,7 +8,7 @@ describe Api::UploadsController do
     }
     @new_attrs = {
       name: "For whom the bell tolls", 
-      file: File.open(File.join(Rails.root, 'spec', 'support', 'assets', 'songs', '03 For Whom the Bell Tolls.mp3'))
+      file: fixture_file_upload("/assets/songs/03 For Whom the Bell Tolls.mp3")
     }
   end
 
@@ -30,9 +30,11 @@ describe Api::UploadsController do
 
     it 'should upload a song if a file is sent' do
       post :create, song: @new_attrs
-      binding.pry
+      @new_song = Song.last
+      ActiveSupport::JSON.decode(response.body)['song'].should == @new_song.id
+      @new_song.file.file.filename.should == @new_attrs[:file].original_filename.gsub(' ','_')
     end
-
+    
   end
 
 end
