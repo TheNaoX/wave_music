@@ -6,13 +6,12 @@ class Api::UploadsController < ApplicationController
       unless params[:song][:file].class == String
         @song = Song.new(params[:song])
       else
-        binding.pry
         file = File.open(params[:song][:file]) 
         @song = Song.new(name: params[:song][:name], file: file)
       end
       
       if @song.save
-        render json: { status: :ok, message: "Successfully uploaded the song..." }
+        render json: { status: :ok, message: "Successfully uploaded the song...", song: @song.id}
       else
         something_went_wrong
       end
