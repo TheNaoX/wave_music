@@ -13,7 +13,7 @@ R12Team455::Application.routes.draw do
     end
     resources :playlists, only: [:index, :show, :create] do
       member do
-        put :add_songs
+        post :add_songs
       end
     end
     resources :uploads, only: [:create]

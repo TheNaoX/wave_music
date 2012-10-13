@@ -29,6 +29,15 @@ class Api::PlaylistsController < ApplicationController
     end
   end
 
+  def add_songs
+    begin
+      @playlist = Playlist.find(params[:id])
+      render json: { status: 200, message: 'Playlist found...'}
+    rescue
+      render json: { status: 404 , message: "This playlist doesn't exists" }
+    end
+  end
+
   private
 
   def something_went_wrong
