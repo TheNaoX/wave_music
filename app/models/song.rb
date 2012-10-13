@@ -1,3 +1,4 @@
 class Song < ActiveRecord::Base
-  # attr_accessible :title, :body
+  has_many :playlists, through: :playlist_songs
+  has_many :playlist_songs
 end
