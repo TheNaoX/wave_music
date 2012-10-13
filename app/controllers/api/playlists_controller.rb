@@ -23,7 +23,7 @@ class Api::PlaylistsController < ApplicationController
     @playlist = Playlist.new(params[:playlist])
 
     if @playlist.save
-      render json: { status: 200, message: 'Successfully created playlist...'}
+      render json: { status: 200, message: 'Successfully created playlist...', playlist: @playlist.id }
     else
       something_went_wrong
     end

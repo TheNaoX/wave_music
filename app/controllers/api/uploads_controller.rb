@@ -11,7 +11,7 @@ class Api::UploadsController < ApplicationController
       end
       
       if @song.save
-        render json: { status: :ok, message: "Successfully uploaded the song...", song: @song.id}
+        render json: { status: :ok, message: "Successfully uploaded the song...", song: @song.id }
       else
         something_went_wrong
       end
