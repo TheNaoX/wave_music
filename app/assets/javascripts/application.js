@@ -13,5 +13,5 @@
 //= require libs/jquery
 //= require libs/underscore
 //= require libs/backbone
+//= require main
 //= require_tree .
-//= require main.js

@@ -4,7 +4,7 @@ RB.Router = Backbone.Router.extend({
   },
 
   Home: function(){
-    console.log("Home");
+    this.homeView = new RB.HomeView();
   }
   
 });
