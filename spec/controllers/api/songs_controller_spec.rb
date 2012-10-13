@@ -42,6 +42,7 @@ describe Api::SongsController do
    context '#stream' do
      it 'should stream the file of the song' do
        get :stream, id: @song.id
+       response.content_type.to_s.should == "[audio/mpeg]"
      end
    end
 

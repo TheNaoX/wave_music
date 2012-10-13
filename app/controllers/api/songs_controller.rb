@@ -20,7 +20,12 @@ class Api::SongsController < ApplicationController
   end
 
   def stream
-    render json: { status: 200 }
+    begin
+      @song = Song.find params[:id]
+      send_file "#{Rails.root}/public#{@song.file.url}", type: MIME::Types.type_for(@song.file.url)
+    rescue
+      render json: { status: 404, message: 'Song not found...' }
+    end
   end
 
 end
