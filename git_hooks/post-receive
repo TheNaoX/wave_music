@@ -1,0 +1,28 @@
+#!/usr/bin/env bash 
+ 
+echo "* Starting deployment of Ruby Floyd" 
+ 
+GIT_DIR=$(pwd) 
+cd .. 
+ 
+export RAILS_ENV=`git branch | grep '*' | awk '{print $2}' ` 
+ 
+source /usr/local/rvm/scripts/rvm 
+ 
+echo "* rvm current" 
+ 
+source .rvmrc 
+rvm current
+
+echo "* Deploying on $RAILS_ENV"
+
+echo "* checkout head"
+env -i git reset --hard
+
+echo '* deploy gems'
+bundle install --without development test --deployment
+
+echo '* rake db:migrate'
+bundle exec rake db:migrate
+
+echo '* starting the application with unicorn'
