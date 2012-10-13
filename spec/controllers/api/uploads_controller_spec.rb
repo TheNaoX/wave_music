@@ -6,6 +6,10 @@ describe Api::UploadsController do
       name: "For whom the bell tolls", 
       file: "/Users/thenaox/projects/r12-team-455/spec/support/assets/songs/03 For Whom the Bell Tolls.mp3"
     }
+    @new_attrs = {
+      name: "For whom the bell tolls", 
+      file: File.open(File.join(Rails.root, 'spec', 'support', 'assets', 'songs', '03 For Whom the Bell Tolls.mp3'))
+    }
   end
 
   context '#create' do
@@ -22,6 +26,11 @@ describe Api::UploadsController do
     it 'should not create song if does not have valid attributes' do
       post :create, song: nil
       ActiveSupport::JSON.decode(response.body)['status'].should == 400
+    end
+
+    it 'should upload a song if a file is sent' do
+      post :create, song: @new_attrs
+      binding.pry
     end
 
   end
