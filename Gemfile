@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.7'
+gem 'rails', '~> 3.2.0'
 
 
 gem 'devise'
@@ -11,8 +11,6 @@ gem 'carrierwave'
 gem 'pg'
 gem 'unicorn'
 gem 'pry'
-
-
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -34,3 +32,5 @@ group :test do
 end
 
 gem 'jquery-rails'
+gem 'devise'
+gem 'omniauth'
