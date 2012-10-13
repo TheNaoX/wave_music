@@ -19,6 +19,11 @@ describe Api::UploadsController do
       Song.first.file.file.filename.should == "03_For_Whom_the_Bell_Tolls.mp3"
     end
 
+    it 'should not create song if does not have valid attributes' do
+      post :create, song: nil
+      ActiveSupport::JSON.decode(response.body)['status'].should == 400
+    end
+
   end
 
 end

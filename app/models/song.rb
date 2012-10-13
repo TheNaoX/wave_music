@@ -7,6 +7,9 @@ class Song < ActiveRecord::Base
   has_many :playlists, through: :playlist_songs
   has_many :playlist_songs
 
+  validates_presence_of :name, :file
+  validates_uniqueness_of :name
+
   api_accessible :music do |t|
     t.add :id
     t.add :name
