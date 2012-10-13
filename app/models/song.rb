@@ -1,5 +1,6 @@
 class Song < ActiveRecord::Base
 
+  attr_accessible :name, :file
   acts_as_api
 
   mount_uploader :file, FileUploader
