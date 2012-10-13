@@ -12,8 +12,8 @@ class Api::PlaylistsController < ApplicationController
 
   def show
     begin
-      @playlist.find params[:id]
-      render_for_apo :as_playlist, json: @playlist
+      @playlist = Playlist.find params[:id]
+      render_for_api :as_playlist, json: @playlist
     rescue
       render json: { status: 404 , message: "This playlist doesn't exists" }
     end

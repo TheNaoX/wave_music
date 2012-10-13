@@ -7,7 +7,15 @@ class Song < ActiveRecord::Base
   has_many :playlist_songs
 
   api_accessible :music do |t|
+    t.add :id
     t.add :name
     t.add :file
   end
+  
+  api_accessible :as_playlist do |t|
+    t.add :id
+    t.add :name
+    t.add :file
+  end
+
 end

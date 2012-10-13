@@ -2,7 +2,11 @@ require 'spec_helper'
 
 describe Api::PlaylistsController do
 
-  before(:each) { @playlist = FactoryGirl.create(:playlist) }
+  before(:each) do 
+    @playlist = FactoryGirl.create(:playlist) 
+    @song = FactoryGirl.create(:song)
+    @playlist_song = PlaylistSong.create(song_id: @song.id, playlist_id: @playlist.id)
+  end
 
   context '#index' do
 
@@ -26,7 +30,10 @@ describe Api::PlaylistsController do
       response.status.should be(200)
     end
 
-    pending 'Add more tests tomorrow here for test playlists have songs and stuff'
+    it 'should contain an array of songs information' do
+      get :show, id: @playlist.id
+      ActiveSupport::JSON.decode(response.body)['playlist']['songs'].first['name'].should == @song.name
+    end
   end
 
 end
