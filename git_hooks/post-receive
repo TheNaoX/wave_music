@@ -26,3 +26,4 @@ echo '* rake db:migrate'
 bundle exec rake db:migrate
 
 echo '* starting the application with unicorn'
+service ruby_floyd restart
