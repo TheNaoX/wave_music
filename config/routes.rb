@@ -6,7 +6,11 @@ R12Team455::Application.routes.draw do
   root :to => 'sessions#index'
 
   namespace :api do
-    resources :songs, only: [:index, :show]
+    resources :songs, only: [:index, :show] do
+      member do
+        get :stream
+      end
+    end
     resources :playlists, only: [:index, :show]
     resources :uploads, only: [:create]
   end

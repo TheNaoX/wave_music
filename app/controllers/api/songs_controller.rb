@@ -19,4 +19,8 @@ class Api::SongsController < ApplicationController
     end
   end
 
+  def stream
+    render json: { status: 200 }
+  end
+
 end

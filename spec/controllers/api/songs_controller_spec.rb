@@ -39,4 +39,10 @@ describe Api::SongsController do
      end
    end
 
+   context '#stream' do
+     it 'should stream the file of the song' do
+       get :stream, id: @song.id
+     end
+   end
+
 end
