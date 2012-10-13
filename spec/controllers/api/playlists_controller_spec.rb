@@ -48,7 +48,10 @@ describe Api::PlaylistsController do
 
   context '#add_songs' do
     it 'should add a song to the playlist' do
-      post :add_songs, id: @playlist.id
+      post :add_songs, id: @playlist.id, songs: [@song.id]
+      ActiveSupport::JSON.decode(response.body)['message'].should == 'Successfully added new songs...'
+      get :show, id: @playlist.id
+      ActiveSupport::JSON.decode(response.body)['playlist']['songs'].first['name'].should == @song.name
     end
   end
 

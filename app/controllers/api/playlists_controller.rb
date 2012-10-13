@@ -32,7 +32,11 @@ class Api::PlaylistsController < ApplicationController
   def add_songs
     begin
       @playlist = Playlist.find(params[:id])
-      render json: { status: 200, message: 'Playlist found...'}
+      if @playlist.add_songs(params[:songs])
+        render json: { status: 200, message: 'Successfully added new songs...'}
+      else
+        something_went_wrong
+      end
     rescue
       render json: { status: 404 , message: "This playlist doesn't exists" }
     end

@@ -14,4 +14,13 @@ class Playlist < ActiveRecord::Base
     t.add :songs
   end
 
+  def add_songs(song_ids)
+    begin
+      new_songs = song_ids.map { |s| Song.find s }
+      self.songs << new_songs unless new_songs.empty?
+    rescue
+      false
+    end
+  end
+
 end

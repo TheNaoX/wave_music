@@ -29,7 +29,7 @@ class Song < ActiveRecord::Base
   end
 
   def filename
-    self.file.filename
+    self.file.file.filename
   end
 
 end
