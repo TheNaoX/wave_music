@@ -1,13 +1,13 @@
 class Api::UploadsController < ApplicationController
 
   def create
-    unless params[:song].nil?
+    unless params[:file].nil? or params[:name].nil?
 
-      unless params[:song][:file].class == String
-        @song = Song.new(params[:song])
+      unless params[:file].class == String
+        @song = Song.new(name: params[:name], file: params[:file])
       else
         file = File.open(params[:song][:file]) 
-        @song = Song.new(name: params[:song][:name], artist: params[:song][:artist], file: file)
+        @song = Song.new(name: params[:name], artist: params[:artist], file: file)
       end
       
       if @song.save
