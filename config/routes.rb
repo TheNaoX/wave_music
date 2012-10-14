@@ -1,4 +1,6 @@
 R12Team455::Application.routes.draw do
+  get "pages/index"
+
   devise_for :users
 
   get "sessions/index"

@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %title R12Team455
+    = stylesheet_link_tag    "application", :media => "all"
+    %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans:400,700", :rel => "stylesheet", :type => "text/css"}
+      = javascript_include_tag "application"
+      = csrf_meta_tags
+  %body
+    = yield
+    -#%script{ src: "http://s0.railsrumble.com/banner.js", type: "text/javascript" }
