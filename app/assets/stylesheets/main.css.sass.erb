@@ -5,6 +5,7 @@ $gray_code_6: #666666
 $gray_code_e6: #E6E6E6
 $gray_code_41: #414141
 $gray_code_5c: #5C5C5C
+$gray_code_ca: #CACACA
 
 body
   background: url('<%= asset_path "body_background.jpg" %>')
@@ -71,8 +72,6 @@ a
       th
         border-bottom: 1px solid $gray_code_41
         text-align: left
-      td.first
-        padding-top: 25px
     table.library
       border-collapse: collapse
       border-spacing: 0
@@ -82,6 +81,13 @@ a
         td
           height: 20px
           line-height: 20px
+        &.first
+          td
+            padding-top: 25px
+        &.active
+          td
+            background-color: $gray_code_ca
+            color: black
       tbody tr:nth-child(even)
         background-color: $gray_code_41
   .playlistW
@@ -105,9 +111,9 @@ a
         float: right
         font-size: 19px
     img
-      width: 42.1%
       margin-left: 28.5%
       margin-top: 20px
+      width: 42.1%
     table
       border-collapse: collapse
       border-spacing: 0
@@ -118,9 +124,31 @@ a
         td
           height: 28px
           line-height: 38px
-        td.active
-          background-color: $color_blue
-          border-top: 1px solid #1EC7FF
-          border-bottom: 1px solid #1EC7FF
+        &.active
+          td
+            background-color: $color_blue
+            border-top: 1px solid #1EC7FF
+            border-bottom: 1px solid #1EC7FF
       tbody tr:nth-child(even)
         background-color: $gray_code_41
+.playerW
+  p
+    text-align: center
+    .data
+      color: white
+      font-size: 1.3em
+    .hint
+      font-size: 1em
+      padding: 0 .3em
+  .advanceLine
+    .total
+      background-color: black
+      height: 5px
+      margin-left: 2.65%
+      width: 94.7%
+    .advance
+      background-color: $color_blue
+      height: 3px
+      margin-left: 2.65%
+      margin-top: -4px
+      width: 3%

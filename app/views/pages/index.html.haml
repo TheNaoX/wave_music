@@ -19,7 +19,19 @@
           %th Artist
           %th Album
       %table.library
+        %tr.first
+          %td 1.
+          %td Civil war
+          %td 3:15
+          %td Guns 'n roses
+          %td Spagetti incident
         %tr
+          %td 1.
+          %td Civil war
+          %td 3:15
+          %td Guns 'n roses
+          %td Spagetti incident
+        %tr.active
           %td 1.
           %td Civil war
           %td 3:15
@@ -35,23 +47,27 @@
       .titles
         %p.name Favorite songs
         %p.hint playlist
-      %img{ src:'http://www.stjudes.org/files/Worship/notes_Resized_177x142.jpg' }
+      %img{ src:'http://cdn.beggars.com/adele/images/21.jpg' }
       %table
         %tr
           %td 1.
           %td Nothing else metters - Metallica
-        %tr
-          %td.active 2.
-          %td.active Nothing else metters - Metallica
+        %tr.active
+          %td 2.
+          %td Nothing else metters - Metallica
         %tr
           %td 3.
           %td Nothing else metters - Metallica
         %tr
           %td 4.
           %td Nothing else metters - Metallica
-  .player
+  .playerW
     %p
-      .span Don't cry
-      .span by
-      .span Guns 'n roses
-    %audio{ controls:'controls' }
+      %span.data Don't cry
+      %span.hint by
+      %span.data Guns 'n roses
+    .advanceLine
+      .total
+      .advance
+    .controls
+    %audio.player{ controls:'controls' }
