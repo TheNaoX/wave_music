@@ -19,39 +19,19 @@
           %th Artist
           %th Album
       %table.library
-        %tr
-          %td 1.
-          %td Civil war
-          %td 3:15
-          %td Guns 'n roses
-          %td Spagetti incident
-        %tr
-          %td 1.
-          %td Civil war
-          %td 3:15
-          %td Guns 'n roses
-          %td Spagetti incident
+
     .playlistW
       .titles
         %p.name Favorite songs
         %p.hint playlist
-      %img{ src:'http://www.stjudes.org/files/Worship/notes_Resized_177x142.jpg' }
-      %table
-        %tr
-          %td 1.
-          %td Nothing else metters - Metallica
-        %tr
-          %td.active 2.
-          %td.active Nothing else metters - Metallica
-        %tr
-          %td 3.
-          %td Nothing else metters - Metallica
-        %tr
-          %td 4.
-          %td Nothing else metters - Metallica
+      %img{ class:"fn-album", src:'http://www.stjudes.org/files/Worship/notes_Resized_177x142.jpg' }
+      %table#pl-songs-list
   .player
-    %p
-      .span Don't cry
-      .span by
-      .span Guns 'n roses
-    %audio{ controls:'controls' }
+    %p.span
+
+    %input{ class:"previous", type:"button", value:"Previous" }
+    %input{ class:"play", type:"button", value:"Play" }
+    %input{ class:"pause", type:"button", value:"Pause" }
+    %input{ class:"next", type:"button", value:"Next" }
+    %audio{ controls:'controls', hidden: true }
+      %source{ src: "", type: "audio/mpeg" }

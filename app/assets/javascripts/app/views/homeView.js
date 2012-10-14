@@ -1,10 +1,10 @@
 RB.HomeView = Backbone.View.extend({
-  el: "#home",
+  el: ".theApp",
 
   events: {
     "click #fn-upload-send"          : "uploadAudio",
     "click #fn-create-playlist-send" : "createPlaylist",
-    "dblclick .fn-song"              : "addToPlaylist",
+    "dblclick .fn-song"            : "addToPlaylist",
     "dblclick .pl-song"              : "stream",
     "keyup #fn-search"               : "search",
     "click .play"                    : "play",
@@ -124,10 +124,10 @@ RB.HomeView = Backbone.View.extend({
     this.playlist = _.uniq(this.playlist);
     $("#pl-songs-list").html("");
     _.each(this.playlist, function(song){
-      $('<label />', {
-        text: song.filename,
+      $('<tr>', {
+        html: '<td>' + song.name + '</td>',
         class: "pl-song"
-      }).appendTo("#pl-songs-list").append("</br>").data("song", song);
+      }).appendTo("#pl-songs-list").append("</tr>").data("song", song);
     });
     if (this.playlist.length == 1) {
       this.addToStream(song.url, song.album_art_url);
@@ -135,13 +135,14 @@ RB.HomeView = Backbone.View.extend({
   },
 
   render: function(){
-    $("#fn-songs-list").html("");
+    $(".library").html("");
     var songs = this.songs.models[0].get("songs");
-    _.each(songs, function(song){
-      $('<label />', {
-        text: song.filename,
+    _.each(songs, function(song, index){
+      songIndex = index + 1;
+      $('<tr>', {
+        html: '<td>' + songIndex +'</td><td>' + song.name + '</td><td>' + song.duration + '</td><td>' + song.artist + '</td><td>' + song.album + '</td>',
         class: "fn-song"
-      }).appendTo("#fn-songs-list").append("</br>").data("song", song);
+      }).appendTo(".library").append("</tr>").data("song", song);
     });
 
   }
