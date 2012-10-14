@@ -7,6 +7,7 @@ RB.UploadController = Backbone.View.extend({
     var formPost = new FormData();
 
     formPost.append("file", data.file);
+    formPost.append("artist", data.artist);
     formPost.append("name", data.name);
 
     xhr.upload.addEventListener("progress", $.proxy(this.onProgress, this), false);
