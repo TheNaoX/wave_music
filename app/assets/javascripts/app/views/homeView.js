@@ -57,7 +57,6 @@ RB.HomeView = Backbone.View.extend({
     $("#fn-songs-list").html("");
     var songs = this.songs.models[0].get("songs");
     _.each(songs, function(song){
-      console.log(song);
       $('<label />', {
         text: song.name + " - " + song.artist + " - " + song.album
       }).appendTo("#fn-songs-list").append("</br>").data("song", song);
