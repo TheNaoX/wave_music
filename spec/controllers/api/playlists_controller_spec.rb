@@ -55,4 +55,11 @@ describe Api::PlaylistsController do
     end
   end
 
+  context '#search' do
+    it 'should search song by name' do
+      get :search, name: 'my'
+      ActiveSupport::JSON.decode(response.body)['playlists'].first['name'].should == @playlist.name
+    end
+  end
+
 end

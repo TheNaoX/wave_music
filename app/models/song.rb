@@ -14,6 +14,8 @@ class Song < ActiveRecord::Base
 
   before_create :get_track_info
 
+  scope :search, lambda { |query| where("name ILIKE ?", "%#{query.strip}%" ) }
+
   api_accessible :music do |t|
     t.add :id
     t.add :name

@@ -46,4 +46,11 @@ describe Api::SongsController do
      end
    end
 
+  context '#search' do
+    it 'should search song by name' do
+      get :search, name: 'for whom'
+      ActiveSupport::JSON.decode(response.body)['songs'].first['name'].should == @song.name
+    end
+  end
+
 end
