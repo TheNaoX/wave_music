@@ -64,8 +64,13 @@ RB.HomeView = Backbone.View.extend({
     this.$(".fn-album").attr("src", album);
     $('audio')[0].load();
     $('audio')[0].play();
+
+    this.addToPlaylist(data);
   },
-  
+
+  addToPlaylist: function(song){
+  },
+
   render: function(){
     $("#fn-songs-list").html("");
     var songs = this.songs.models[0].get("songs");
