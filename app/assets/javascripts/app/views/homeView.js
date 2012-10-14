@@ -91,9 +91,10 @@ RB.HomeView = Backbone.View.extend({
     this.playlist.push(song);
     this.playlist = _.uniq(this.playlist);
     $("#pl-songs-list").html("");
-    _.each(this.playlist, function(song){
+    _.each(this.playlist, function(song, index){
+      songIndex = index + 1;
       $('<tr>', {
-        html: '<td>' + song.name + '</td>',
+        html: '<td>' + songIndex +'</td><td>' + song.name + '</td>',
         class: "pl-song"
       }).appendTo("#pl-songs-list").append("</tr>").data("song", song);
     });
