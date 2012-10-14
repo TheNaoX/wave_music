@@ -2,7 +2,7 @@
 
   <div>
     <h2>Search</h2>
-    <input id="fn-search" type="search">
+    <input id="fn-search" type="search" placeholder="search">
   </div>
 
   <form>
@@ -36,7 +36,9 @@
 
   <div>
     <h2>Streaming</h2>
-    <audio controls="controls">
+    <input class="play" type="button" value="Play" />
+    <input class="pause" type="button" value="Pause" />
+    <audio controls="controls" hidden="true">
       <source src="" type="audio/mpeg">
           Your browser does not support the audio element.
     </audio>
