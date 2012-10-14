@@ -9,8 +9,10 @@ class Song < ActiveRecord::Base
   has_many :playlists, through: :playlist_songs
   has_many :playlist_songs
 
-  validates_presence_of :name, :file
+  validates_presence_of :name, :artist, :file
   validates_uniqueness_of :name
+
+  before_create :get_track_info
 
   api_accessible :music do |t|
     t.add :id
@@ -32,6 +34,17 @@ class Song < ActiveRecord::Base
 
   def filename
     self.file.file.filename
+  end
+
+  private
+
+  def get_track_info
+    lastfm = Lastfm.new(LASTFM_API['api_key'], LASTFM_API['api_secret'])
+    track_info = lastfm.track.get_info(artist: self.artist, track: self.name)
+    self.album = track_info['album']['title']
+    file = open(track_info['album']['image'].last['content'])
+    self.album_art = file
+    self.duration = track_info['duration']
   end
 
 end
