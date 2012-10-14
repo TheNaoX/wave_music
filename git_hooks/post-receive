@@ -25,5 +25,8 @@ bundle install --without development test --deployment
 echo '* rake db:migrate'
 bundle exec rake db:migrate
 
+echo '* precompile new assets'
+bundle exec rake assets:precompile
+
 echo '* starting the application with unicorn'
 service ruby_floyd restart
