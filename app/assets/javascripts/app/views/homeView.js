@@ -3,7 +3,8 @@ RB.HomeView = Backbone.View.extend({
 
   events: {
     "click #fn-upload-send"          : "uploadAudio",
-    "click #fn-create-playlist-send" : "createPlaylist"
+    "click #fn-create-playlist-send" : "createPlaylist",
+    "dblclick .fn-song"              : "stream"
   },
 
   initialize: function(){
@@ -22,7 +23,6 @@ RB.HomeView = Backbone.View.extend({
 
     var data = {
       file: this.$("#fn-upload-file")[0].files.length > 0 ? $('#fn-upload-file')[0].files[0] : null,
-      artist: this.$("#fn-upload-artist").val() !== "" ? this.$("#fn-upload-artist").val() : null,
       name: this.$("#fn-upload-name").val() !== "" ? this.$("#fn-upload-name").val() : null
     };
 
@@ -53,13 +53,28 @@ RB.HomeView = Backbone.View.extend({
     }
   },
 
+  stream: function(event){
+    event.preventDefault();
+    var $target = $(event.currentTarget);
+    var data = $target.data("song");
+    var url = data.url;
+    var album = data.album_art_url;
+
+    $('audio source').attr("src", url);
+    this.$(".fn-album").attr("src", album);
+    $('audio')[0].load();
+    $('audio')[0].play();
+  },
+  
   render: function(){
     $("#fn-songs-list").html("");
     var songs = this.songs.models[0].get("songs");
     _.each(songs, function(song){
       $('<label />', {
-        text: song.name + " - " + song.artist + " - " + song.album
+        text: song.filename,
+        class: "fn-song"
       }).appendTo("#fn-songs-list").append("</br>").data("song", song);
     });
+
   }
 });
