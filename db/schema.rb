@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121014010054) do
+ActiveRecord::Schema.define(:version => 20121014011130) do
 
   create_table "playlist_songs", :force => true do |t|
     t.integer  "song_id"
@@ -30,16 +30,15 @@ ActiveRecord::Schema.define(:version => 20121014010054) do
   create_table "songs", :force => true do |t|
     t.string   "name"
     t.string   "file"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "track_infos", :force => true do |t|
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.string   "artist"
     t.string   "album"
-    t.integer  "duration"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "duration"
+    t.string   "album_art_file_name"
+    t.string   "album_art_content_type"
+    t.integer  "album_art_file_size"
+    t.datetime "album_art_updated_at"
   end
 
   create_table "users", :force => true do |t|

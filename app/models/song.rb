@@ -1,7 +1,9 @@
 class Song < ActiveRecord::Base
-
-  attr_accessible :name, :file
+  
+  attr_accessible :name, :file, :album_art, :artist, :album, :duration
   acts_as_api
+
+  has_attached_file :album_art, styles: { large: "259x207>", medium: "209x157>", small: "159x107" }
 
   mount_uploader :file, FileUploader
   has_many :playlists, through: :playlist_songs
