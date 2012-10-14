@@ -33,10 +33,7 @@ RB.HomeView = Backbone.View.extend({
       console.log('there is no previous song');
     } else {
       var previousSong = this.playlist[currentSongIndex - 1];
-      $('audio source').attr("src", previousSong.url);
-      this.$(".fn-album").attr("src", previousSong.album_art_url);
-      $('audio')[0].load();
-      $('audio')[0].play();
+      this.addToStream(previousSong.url, previousSong.album_art_url);
     }
   },
 
@@ -44,14 +41,11 @@ RB.HomeView = Backbone.View.extend({
     var currentSongUrl = $("audio source").attr("src");
     var currentSong = _.find(this.playlist, function(song) { return song.url == currentSongUrl })
     var currentSongIndex = _.indexOf(this.playlist, currentSong)
-    if (currentSongIndex == this.playlist.length) {
+    if ((currentSongIndex + 1) == this.playlist.length) {
       console.log('there is no next song');
     } else {
       var previousSong = this.playlist[currentSongIndex + 1];
-      $('audio source').attr("src", previousSong.url);
-      this.$(".fn-album").attr("src", previousSong.album_art_url);
-      $('audio')[0].load();
-      $('audio')[0].play();
+      this.addToStream(previousSong.url, previousSong.album_art_url);
     }
   },
 
@@ -113,6 +107,10 @@ RB.HomeView = Backbone.View.extend({
     var url = data.url;
     var album = data.album_art_url;
 
+    this.addToStream(url, album);
+  },
+
+  addToStream: function(url, album){
     $('audio source').attr("src", url);
     this.$(".fn-album").attr("src", album);
     $('audio')[0].load();
@@ -133,6 +131,9 @@ RB.HomeView = Backbone.View.extend({
         class: "pl-song"
       }).appendTo("#pl-songs-list").append("</br>").data("song", song);
     });
+    if (this.playlist.length == 1) {
+      this.addToStream(song.url, song.album_art_url);
+    }
   },
 
   render: function(){
