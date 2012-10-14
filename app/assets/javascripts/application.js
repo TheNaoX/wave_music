@@ -16,4 +16,7 @@
 //= require main
 //= require app/models/song
 //= require app/models/playlist
-//= require_tree .
+//= require app/collections/songs
+//= require app/views/homeView
+//= require app/views/uploadController
+//= require router

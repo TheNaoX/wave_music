@@ -4,11 +4,17 @@ RB.HomeView = Backbone.View.extend({
   events: {
     "click #fn-upload-send"          : "uploadAudio",
     "click #fn-create-playlist-send" : "createPlaylist",
-    "dblclick .fn-song"              : "stream",
-    "keyup #fn-search"               : "search"
+    "dblclick .fn-song"              : "addToPlaylist",
+    "dblclick .pl-song"              : "stream",
+    "keyup #fn-search"               : "search",
+    "click .play"                    : "play",
+    "click .pause"                   : "pause",
+    "click .previous"                : "previous",
+    "click .next"                    : "next"
   },
 
   initialize: function(){
+    this.playlist = new Array();
     this.songs = new RB.SongsCollection();
     this.songs.bind("reset", this.render, this);
 
@@ -17,6 +23,44 @@ RB.HomeView = Backbone.View.extend({
     });
 
     this.songs.fetch();
+  },
+
+  previous: function(event){
+    var currentSongUrl = $("audio source").attr("src");
+    var currentSong = _.find(this.playlist, function(song) { return song.url == currentSongUrl })
+    var currentSongIndex = _.indexOf(this.playlist, currentSong)
+    if (currentSongIndex <= 0 ) {
+      console.log('there is no previous song');
+    } else {
+      var previousSong = this.playlist[currentSongIndex - 1];
+      $('audio source').attr("src", previousSong.url);
+      this.$(".fn-album").attr("src", previousSong.album_art_url);
+      $('audio')[0].load();
+      $('audio')[0].play();
+    }
+  },
+
+  next: function(event){
+    var currentSongUrl = $("audio source").attr("src");
+    var currentSong = _.find(this.playlist, function(song) { return song.url == currentSongUrl })
+    var currentSongIndex = _.indexOf(this.playlist, currentSong)
+    if (currentSongIndex == this.playlist.length) {
+      console.log('there is no next song');
+    } else {
+      var previousSong = this.playlist[currentSongIndex + 1];
+      $('audio source').attr("src", previousSong.url);
+      this.$(".fn-album").attr("src", previousSong.album_art_url);
+      $('audio')[0].load();
+      $('audio')[0].play();
+    }
+  },
+
+  pause: function(){
+    $('audio')[0].pause();
+  },
+
+  play: function(){
+    $('audio')[0].play();
   },
 
   search: function(event){
@@ -73,11 +117,22 @@ RB.HomeView = Backbone.View.extend({
     this.$(".fn-album").attr("src", album);
     $('audio')[0].load();
     $('audio')[0].play();
-
-    this.addToPlaylist(data);
   },
 
-  addToPlaylist: function(song){
+  addToPlaylist: function(event){
+    event.preventDefault();
+    var $target = $(event.currentTarget);
+    var song = $target.data("song");
+
+    this.playlist.push(song);
+    this.playlist = _.uniq(this.playlist);
+    $("#pl-songs-list").html("");
+    _.each(this.playlist, function(song){
+      $('<label />', {
+        text: song.filename,
+        class: "pl-song"
+      }).appendTo("#pl-songs-list").append("</br>").data("song", song);
+    });
   },
 
   render: function(){
