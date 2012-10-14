@@ -19,7 +19,7 @@ class Song < ActiveRecord::Base
     t.add :name
     t.add :artist
     t.add :album
-    t.add :album_art
+    t.add :album_art_url
     t.add :filename
     t.add :url
   end
@@ -29,9 +29,13 @@ class Song < ActiveRecord::Base
     t.add :name
     t.add :artist
     t.add :album
-    t.add :album_art
+    t.add :album_art_url
     t.add :filename
     t.add :url
+  end
+
+  def album_art_url
+    self.album_art(:large)
   end
 
   def url
