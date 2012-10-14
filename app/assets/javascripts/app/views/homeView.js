@@ -30,7 +30,6 @@ RB.HomeView = Backbone.View.extend({
     var currentSong = _.find(this.playlist, function(song) { return song.url == currentSongUrl })
     var currentSongIndex = _.indexOf(this.playlist, currentSong)
     if (currentSongIndex <= 0 ) {
-      console.log('there is no previous song');
     } else {
       var previousSong = this.playlist[currentSongIndex - 1];
       this.addToStream(previousSong.url, previousSong.album_art_url);
@@ -42,7 +41,6 @@ RB.HomeView = Backbone.View.extend({
     var currentSong = _.find(this.playlist, function(song) { return song.url == currentSongUrl })
     var currentSongIndex = _.indexOf(this.playlist, currentSong)
     if ((currentSongIndex + 1) == this.playlist.length) {
-      console.log('there is no next song');
     } else {
       var previousSong = this.playlist[currentSongIndex + 1];
       this.addToStream(previousSong.url, previousSong.album_art_url);
