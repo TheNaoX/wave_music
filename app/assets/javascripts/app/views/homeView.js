@@ -4,7 +4,8 @@ RB.HomeView = Backbone.View.extend({
   events: {
     "click #fn-upload-send"          : "uploadAudio",
     "click #fn-create-playlist-send" : "createPlaylist",
-    "dblclick .fn-song"              : "stream"
+    "dblclick .fn-song"              : "stream",
+    "keyup #fn-search"               : "search"
   },
 
   initialize: function(){
@@ -16,6 +17,13 @@ RB.HomeView = Backbone.View.extend({
     });
 
     this.songs.fetch();
+  },
+
+  search: function(event){
+    var $target = $(event.currentTarget);
+    var text = $target.val();
+
+    this.songs.search(text);
   },
 
   uploadAudio: function(event){
