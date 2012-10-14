@@ -17,12 +17,12 @@ describe Api::UploadsController do
 
   context '#create' do
     it 'should upload a song' do
-      post :create, song: @attrs
+      post :create, file: @attrs[:file], name: @attrs[:name], artist: @attrs[:artist]
       ActiveSupport::JSON.decode(response.body)['message'].should == 'Successfully uploaded the song...'
     end
 
     it 'should save correctly the song' do
-      post :create, song: @attrs
+      post :create, file: @attrs[:file], name: @attrs[:name], artist: @attrs[:artist]
       Song.first.file.file.filename.should == "03_For_Whom_the_Bell_Tolls.mp3"
     end
 
@@ -32,7 +32,7 @@ describe Api::UploadsController do
     end
 
     it 'should upload a song if a file is sent' do
-      post :create, song: @new_attrs
+      post :create, file: @new_attrs[:file], name: @new_attrs[:name], artist: @new_attrs[:artist]
       @new_song = Song.last
       ActiveSupport::JSON.decode(response.body)['song'].should == @new_song.id
       @new_song.file.file.filename.should == @new_attrs[:file].original_filename.gsub(' ','_')

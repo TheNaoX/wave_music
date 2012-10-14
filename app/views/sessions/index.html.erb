@@ -1,2 +1,42 @@
-<h1>Sessions#index</h1>
-<p>Find me in app/views/sessions/index.html.erb</p>
+<div id="home">
+  <form>
+    <h2>Upload form</h2>
+    <label>Name</label>
+    <input id="fn-upload-name" type="text"></input>
+    <label>Artist</label>
+    <input id="fn-upload-artist" type="text"></input>
+    <label>File</label>
+    <input id="fn-upload-file" type="file" accept="audio/mp3"></input>
+    <button id="fn-upload-send" type="button">Send</button>
+
+    <span id="fn-upload-progress"></span>
+  </form>
+
+  <form>
+    <h2>Create playlist</h2>
+    <label>Name</label>
+    <input id="fn-create-playlist-name" type="text"></input>
+    <button id="fn-create-playlist-send" type="button">Send</button>
+    <span id="fn-create-playlist-msg" ></span>
+  </form>
+
+
+  <div>
+    <h2>Songs</h2>
+    <div id="fn-songs-list">
+    </div>
+  </div>
+
+
+  <div>
+    <h2>Streaming</h2>
+
+    <audio controls="controls">
+      <source src="" type="audio/mpeg">
+          Your browser does not support the audio element.
+    </audio>
+
+    <img class="fn-album" src="" />
+
+  </div>
+</div>

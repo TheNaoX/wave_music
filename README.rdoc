@@ -19,6 +19,20 @@
   bundle install
   rake db:migrate
 
+== API guide
+
+GET    /api/songs/:id/stream          # Opens the stream for the song provided by id
+GET    /api/songs                     # Get the list of songs stored in the application
+GET    /api/songs/:id                 # Display the information of the song provided by id
+
+GET    /api/playlists                 # Gets the list of playlists
+POST   /api/playlists                 # Saves new playlist without save songs in it, playlist: {name: 'My playlist'}
+POST   /api/playlists/:id/add_songs   # Adds songs to the playlist provided by id, and post the song_ids as array {songs:[1,2,3,4,5]}
+GET    /api/playlists/:id             # Displays the current playlist
+
+# for review
+POST   /api/uploads                   # Uploads a song as song: {name: 'my song', file: 'url of the song' }
+
 And enjoy!
 
 Copyright (C) 2012  RubyFloyd
