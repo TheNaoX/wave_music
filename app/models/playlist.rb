@@ -7,6 +7,8 @@ class Playlist < ActiveRecord::Base
   has_many :songs, through: :playlist_songs
   has_many :playlist_songs
 
+  scope :search, lambda { |query| where("name ILIKE ?", "%#{query.strip}%" ) }
+
   api_accessible :as_playlist do |t|
     t.add :id
     t.add :name
