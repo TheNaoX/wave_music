@@ -40,5 +40,5 @@
       %img.prev{ src:"#{asset_path "player_prev.png"}" }
       %img.next{ src:"#{asset_path "player_next.png"}" }
       %img.play{ src:"#{asset_path "player_play.png"}" }
-    %audio{ controls:'controls', hidden: true }
+    %audio{ class: 'main-player', controls:'controls', hidden: true }
       %source{ src: "", type: "audio/mpeg" }
