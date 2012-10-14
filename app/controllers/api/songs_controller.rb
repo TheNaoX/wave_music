@@ -28,4 +28,12 @@ class Api::SongsController < ApplicationController
     end
   end
 
+  def search
+    if @songs = Song.search(params[:name])
+      render_for_api :music, json: @songs
+    else
+      render json: { status: 404 , message: "No results" }
+    end
+  end
+
 end
