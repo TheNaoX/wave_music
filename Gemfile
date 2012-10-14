@@ -13,6 +13,7 @@ gem 'unicorn'
 gem 'pry'
 gem 'lastfm'
 gem 'paperclip'
+gem 'sass-rails',   '~> 3.2.3'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
