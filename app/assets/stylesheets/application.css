@@ -11,3 +11,26 @@
  *= require_self
  *= require_tree .
  */
+
+.fn-song {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.fn-song:hover {
+  background-color:gray;
+}
+.fn-song:active {
+  background-color:yellow;
+}
+.pl-song {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.pl-song:hover {
+  background-color:gray
+}
+.pl-song:active {
+  background-color:yellow;
+}
