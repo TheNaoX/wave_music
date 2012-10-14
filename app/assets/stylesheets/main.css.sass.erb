@@ -1,0 +1,72 @@
+$color_blue: #1A9FC9
+$gray_code_9: #999999
+$gray_code_c: #cccccc
+$gray_code_6: #666666
+$gray_code_e6: #E6E6E6
+$gray_code_41: #414141
+
+body
+  background: url('<%= asset_path "body_background.jpg" %>')
+  color: $gray_code_c
+  font-family: 'Droid Sans', sans-serif
+  font-size: 14px
+  margin: 0
+
+
+a
+  color: white
+  text-decoration: none
+
+.headerAndLibraryW
+  border-right: 1px solid black
+  overflow: auto
+  width: 67.1%
+  header
+    margin-top: 25px
+    overflow: auto
+    ul
+      float: left
+      margin-left: 3.2%
+      overflow: auto
+      padding: 0
+      .active
+        color: $color_blue
+      li
+        list-style-type: none
+        float: left
+        font-size: 1.3em
+        font-weight: bold
+        margin-left: 55px
+      .first
+        margin-left: 0
+    .signoutAndFormW
+      float: right
+      margin-right: 3.2%
+      a
+        color: $gray_code_9
+        float: right
+        font-weight: bold
+        &:hover
+          color: $gray_code_6
+      input
+        background-color: $gray_code_e6
+        border: none
+        color: $gray_code_6
+        font-size: 1.1em
+        line-height: 22px
+        margin-top: 7px
+        padding-left: .4em
+        height: 22px
+        width: 228px
+  table.library
+    border-collapse: collapse
+    border-spacing: 0
+    margin-left: 3.2%
+    margin-top: 22px
+    width: 87.8%
+    tr
+      th
+        border-bottom: 1px solid $gray_code_41
+        text-align: left
+      td.first
+        padding-top: 25px
