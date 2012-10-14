@@ -7,7 +7,7 @@ class Api::UploadsController < ApplicationController
         @song = Song.new(params[:song])
       else
         file = File.open(params[:song][:file]) 
-        @song = Song.new(name: params[:song][:name], file: file)
+        @song = Song.new(name: params[:song][:name], artist: params[:song][:artist], file: file)
       end
       
       if @song.save

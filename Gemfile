@@ -11,6 +11,8 @@ gem 'carrierwave'
 gem 'pg'
 gem 'unicorn'
 gem 'pry'
+gem 'lastfm'
+gem 'paperclip'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

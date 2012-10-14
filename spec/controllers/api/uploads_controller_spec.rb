@@ -4,10 +4,13 @@ describe Api::UploadsController do
   before(:each) do
     @attrs = {
       name: "For whom the bell tolls", 
+      artist: 'Metallica',
       file: "/Users/thenaox/projects/r12-team-455/spec/support/assets/songs/03 For Whom the Bell Tolls.mp3"
     }
+
     @new_attrs = {
       name: "For whom the bell tolls", 
+      artist: 'Metallica',
       file: fixture_file_upload("/assets/songs/03 For Whom the Bell Tolls.mp3")
     }
   end
