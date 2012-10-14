@@ -49,12 +49,19 @@ class Song < ActiveRecord::Base
   private
 
   def get_track_info
-    lastfm = Lastfm.new(LASTFM_API['api_key'], LASTFM_API['api_secret'])
-    track_info = lastfm.track.get_info(artist: self.artist, track: self.name)
-    self.album = track_info['album']['title']
-    file = URI.parse(track_info['album']['image'].last['content'])
-    self.album_art = file
-    self.duration = track_info['duration']
+    begin
+      lastfm = Lastfm.new(LASTFM_API['api_key'], LASTFM_API['api_secret'])
+      track_info = lastfm.track.get_info(artist: self.artist, track: self.name)
+      self.album = track_info['album']['title']
+      file = URI.parse(track_info['album']['image'].last['content'])
+      self.album_art = file
+      self.duration = track_info['duration']
+    rescue
+      self.album = "Unknown Album"
+      file = URI.parse("http://cdn.last.fm/flatness/responsive/2/noimage/default_album_300_g4.png")
+      self.album_art = file
+      self.duration = nil
+    end
   end
 
 end
