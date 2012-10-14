@@ -7,7 +7,7 @@ RB.HomeView = Backbone.View.extend({
     "keyup #fn-search"               : "search",
     "click .play"                    : "play",
     "click .pause"                   : "pause",
-    "click .previous"                : "previous",
+    "click .prev"                    : "previous",
     "click .next"                    : "next"
   },
 
@@ -24,7 +24,9 @@ RB.HomeView = Backbone.View.extend({
     var $target = $(event.currentTarget);
     var track_length = $target[0].duration;
     var secs = $target[0].currentTime;
-    var progress = (secs/track_length) * 100;
+    var width = parseInt($('.total').css('width'));
+    var progress = (secs/track_length) * width;
+    $('.advance').css("width", progress);
   },
 
   previous: function(event){
