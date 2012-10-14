@@ -12,6 +12,9 @@ R12Team455::Application.routes.draw do
       end
     end
     resources :playlists, only: [:index, :show, :create] do
+      collection do
+        get :search
+      end
       member do
         post :add_songs
       end

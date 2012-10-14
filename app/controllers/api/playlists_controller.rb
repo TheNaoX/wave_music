@@ -42,6 +42,14 @@ class Api::PlaylistsController < ApplicationController
     end
   end
 
+  def search
+    if @playlists = Playlist.search(params[:name])
+      render_for_api :as_playlist, json: @playlists
+    else
+      render json: { status: 404 , message: "No results" }
+    end
+  end
+
   private
 
   def something_went_wrong
