@@ -2,12 +2,12 @@ RB.HomeView = Backbone.View.extend({
   el: ".theApp",
 
   events: {
-    "dblclick .fn-song"            : "addToPlaylist",
+    "dblclick .fn-song"              : "addToPlaylist",
     "dblclick .pl-song"              : "stream",
     "keyup #fn-search"               : "search",
     "click .play"                    : "play",
     "click .pause"                   : "pause",
-    "click .previous"                : "previous",
+    "click .prev"                    : "previous",
     "click .next"                    : "next"
   },
 
@@ -17,6 +17,16 @@ RB.HomeView = Backbone.View.extend({
     this.songs.bind("reset", this.render, this);
 
     this.songs.fetch();
+    this.$('.main-player').on('timeupdate', this.getProgress);
+  },
+
+  getProgress: function(event){
+    var $target = $(event.currentTarget);
+    var track_length = $target[0].duration;
+    var secs = $target[0].currentTime;
+    var width = parseInt($('.total').css('width'));
+    var progress = (secs/track_length) * width;
+    $('.advance').css("width", progress);
   },
 
   previous: function(event){
