@@ -21,6 +21,7 @@ class Song < ActiveRecord::Base
     t.add :album
     t.add :album_art_url
     t.add :filename
+    t.add :duration
     t.add :url
   end
   
@@ -31,6 +32,7 @@ class Song < ActiveRecord::Base
     t.add :album
     t.add :album_art_url
     t.add :filename
+    t.add :duration
     t.add :url
   end
 
