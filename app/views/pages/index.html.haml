@@ -19,7 +19,6 @@
           %th Artist
           %th Album
       %table.library
-
     .playlistW
       .titles
         %p.name Favorite songs
@@ -29,9 +28,17 @@
   .player
     %p.span
 
-    %input{ class:"previous", type:"button", value:"Previous" }
-    %input{ class:"play", type:"button", value:"Play" }
-    %input{ class:"pause", type:"button", value:"Pause" }
-    %input{ class:"next", type:"button", value:"Next" }
+  .playerW
+    %p
+      %span.data 
+      %span.hint
+      %span.data
+    .advanceLine
+      .total
+      .advance
+    .controls
+      %img.prev{ src:"#{asset_path "player_prev.png"}" }
+      %img.next{ src:"#{asset_path "player_next.png"}" }
+      %img.play{ src:"#{asset_path "player_play.png"}" }
     %audio{ controls:'controls', hidden: true }
       %source{ src: "", type: "audio/mpeg" }

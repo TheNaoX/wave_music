@@ -5,6 +5,7 @@ $gray_code_6: #666666
 $gray_code_e6: #E6E6E6
 $gray_code_41: #414141
 $gray_code_5c: #5C5C5C
+$gray_code_ca: #CACACA
 
 body
   background: url('<%= asset_path "body_background.jpg" %>')
@@ -20,8 +21,8 @@ a
 
 .notPlayerW
   overflow: auto
+
   .headerAndLibraryW
-    border-right: 1px solid black
     float: left
     overflow: auto
     width: 67.1%
@@ -62,6 +63,7 @@ a
           padding-left: .4em
           height: 22px
           width: 228px
+
     table.libraryTitles
       border-collapse: collapse
       border-spacing: 0
@@ -71,8 +73,6 @@ a
       th
         border-bottom: 1px solid $gray_code_41
         text-align: left
-      td.first
-        padding-top: 25px
     table.library
       border-collapse: collapse
       border-spacing: 0
@@ -82,9 +82,18 @@ a
         td
           height: 20px
           line-height: 20px
+        &.first
+          td
+            padding-top: 25px
+        &.active
+          td
+            background-color: $gray_code_ca
+            color: black
       tbody tr:nth-child(even)
         background-color: $gray_code_41
+
   .playlistW
+    border-left: 1px solid black
     float: right
     width: 32.8%
     .titles
@@ -105,9 +114,9 @@ a
         float: right
         font-size: 19px
     img
-      width: 42.1%
       margin-left: 28.5%
       margin-top: 20px
+      width: 42.1%
     table
       border-collapse: collapse
       border-spacing: 0
@@ -118,9 +127,46 @@ a
         td
           height: 28px
           line-height: 38px
-        td.active
-          background-color: $color_blue
-          border-top: 1px solid #1EC7FF
-          border-bottom: 1px solid #1EC7FF
+        &.active
+          td
+            background-color: $color_blue
+            border-top: 1px solid #1EC7FF
+            border-bottom: 1px solid #1EC7FF
       tbody tr:nth-child(even)
         background-color: $gray_code_41
+
+.playerW
+  border-top: 1px solid black
+  p
+    margin-bottom: 17px
+    text-align: center
+    .data
+      color: white
+      font-size: 1.3em
+    .hint
+      font-size: 1em
+      padding: 0 .3em
+  .advanceLine
+    .total
+      background-color: black
+      height: 5px
+      margin-left: 2.65%
+      width: 94.7%
+    .advance
+      background-color: $color_blue
+      height: 3px
+      margin-left: 2.65%
+      margin-top: -4px
+      width: 3%
+  .controls
+    margin: 0 auto
+    margin-top: 14px
+    width: 147px
+    img.prev
+      float: left
+      margin-top: 34px
+    img.next
+      float: right
+      margin-top: 34px
+    img.play
+      margin-left: 5px
