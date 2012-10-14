@@ -17,6 +17,9 @@ class Song < ActiveRecord::Base
   api_accessible :music do |t|
     t.add :id
     t.add :name
+    t.add :artist
+    t.add :album
+    t.add :album_art
     t.add :filename
     t.add :url
   end
@@ -24,6 +27,9 @@ class Song < ActiveRecord::Base
   api_accessible :as_playlist do |t|
     t.add :id
     t.add :name
+    t.add :artist
+    t.add :album
+    t.add :album_art
     t.add :filename
     t.add :url
   end
@@ -42,7 +48,7 @@ class Song < ActiveRecord::Base
     lastfm = Lastfm.new(LASTFM_API['api_key'], LASTFM_API['api_secret'])
     track_info = lastfm.track.get_info(artist: self.artist, track: self.name)
     self.album = track_info['album']['title']
-    file = open(track_info['album']['image'].last['content'])
+    file = URI.parse(track_info['album']['image'].last['content'])
     self.album_art = file
     self.duration = track_info['duration']
   end
