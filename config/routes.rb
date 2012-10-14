@@ -5,7 +5,7 @@ R12Team455::Application.routes.draw do
 
   get "sessions/index"
 
-  root :to => 'sessions#index'
+  root :to => 'pages#index'
 
   namespace :api do
 
