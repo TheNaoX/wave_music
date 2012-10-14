@@ -31,6 +31,7 @@ RB.HomeView = Backbone.View.extend({
 
     var data = {
       file: this.$("#fn-upload-file")[0].files.length > 0 ? $('#fn-upload-file')[0].files[0] : null,
+      artist: this.$("#fn-upload-artist").val() !== "" ? this.$("#fn-upload-artist").val() : null,
       name: this.$("#fn-upload-name").val() !== "" ? this.$("#fn-upload-name").val() : null
     };
 
