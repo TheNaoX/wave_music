@@ -17,6 +17,7 @@
 //= require app/models/song
 //= require app/models/playlist
 //= require app/collections/songs
+//= require app/views/uploadView
 //= require app/views/homeView
 //= require app/views/uploadController
 //= require router

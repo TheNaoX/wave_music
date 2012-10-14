@@ -4,6 +4,7 @@ $gray_code_c: #cccccc
 $gray_code_6: #666666
 $gray_code_e6: #E6E6E6
 $gray_code_41: #414141
+$gray_code_5c: #5C5C5C
 
 body
   background: url('<%= asset_path "body_background.jpg" %>')
@@ -108,9 +109,18 @@ a
       margin-left: 28.5%
       margin-top: 20px
     table
+      border-collapse: collapse
+      border-spacing: 0
       margin-left: 8%
       margin-top: 20px
       width: 84.5%
-      td
-        height: 28px
-        line-height: 38px
+      tr
+        td
+          height: 28px
+          line-height: 38px
+        td.active
+          background-color: $color_blue
+          border-top: 1px solid #1EC7FF
+          border-bottom: 1px solid #1EC7FF
+      tbody tr:nth-child(even)
+        background-color: $gray_code_41
