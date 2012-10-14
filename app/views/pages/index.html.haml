@@ -47,7 +47,7 @@
       .titles
         %p.name Favorite songs
         %p.hint playlist
-      %img{ src:'http://cdn.beggars.com/adele/images/21.jpg' }
+      %img{ src:'http://www.stjudes.org/files/Worship/notes_Resized_177x142.jpg' }
       %table
         %tr
           %td 1.
@@ -70,4 +70,6 @@
       .total
       .advance
     .controls
-    %audio.player{ controls:'controls' }
+      %img.prev{ src:"#{asset_path "player_prev.png"}" }
+      %img.next{ src:"#{asset_path "player_next.png"}" }
+      %img.play{ src:"#{asset_path "player_play.png"}" }
