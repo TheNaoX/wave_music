@@ -1,6 +1,6 @@
 #!/usr/bin/env bash 
  
-echo "* Starting deployment of Ruby Floyd" 
+echo "* Starting deployment of Wave Music" 
  
 GIT_DIR=$(pwd) 
 cd .. 
@@ -29,4 +29,4 @@ echo '* precompile new assets'
 bundle exec rake assets:precompile
 
 echo '* starting the application with unicorn'
-service ruby_floyd restart
+service wave_music_staging restart
