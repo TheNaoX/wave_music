@@ -34,6 +34,15 @@
 
   POST   /api/uploads                   # Uploads a song as song: {name: 'my song', file: 'url of the song' }
 
+  Requerimientos:
+  * Autenticacion de usuarios {username, email, password}
+    ** Perfil de usuarios {playlists}
+    ** Los usuarios deben ser capaces de escuchar playlist de otros usuarios y compartir las suyas
+  * Autenticacion de API
+    ** cada request urlbase + ?name=show&auth_token=asdkjfh283989dhf234jfbqd
+  * generar una libreria en javascript
+    ** function song(id) {bla bla bla} => new_song = song(1); => new_song.play || .name
+
 And enjoy!
 
 Copyright (C) 2012  RubyFloyd
