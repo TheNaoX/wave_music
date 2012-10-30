@@ -4,6 +4,7 @@ gem 'rails', '~> 3.2.0'
 
 
 gem 'devise'
+gem 'omniauth'
 gem 'acts_as_api'
 gem 'rabl'
 gem 'haml'
@@ -35,5 +36,3 @@ group :test do
 end
 
 gem 'jquery-rails'
-gem 'devise'
-gem 'omniauth'
