@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Api::SessionsController do
   
-  pending 'Add some tests here'
+  context '#new' do
+    it 'should create new session' do
+      get :new
+    end
+  end
 
 end

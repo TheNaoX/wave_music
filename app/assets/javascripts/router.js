@@ -1,7 +1,7 @@
 RB.Router = Backbone.Router.extend({
   routes: {
     "": "Home",
-    "sessions/index": "Upload"
+    "uploads": "Upload"
   },
 
   Upload: function(){

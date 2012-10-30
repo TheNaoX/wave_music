@@ -1,9 +1,9 @@
 R12Team455::Application.routes.draw do
-  get "pages/index"
+  resources :pages, only: [:index]
 
   devise_for :users
 
-  get "sessions/index"
+  resources :uploads, only: [:index]
 
   root :to => 'pages#index'
 
@@ -33,6 +33,8 @@ R12Team455::Application.routes.draw do
     end
 
     resources :uploads, only: [:create]
+
+    resources :sessions, only: [:new]
 
   end
 
