@@ -1,6 +1,7 @@
 class Api::SessionsController < ApplicationController
   def create
     begin
+      binding.pry
       @user = User.find_for_database_authentication(params[:user_login][:email])
       return invalid_login_attempt unless resource
       if resource.valid_password? params[:user_login][:password]
