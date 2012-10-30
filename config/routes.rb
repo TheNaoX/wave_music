@@ -34,7 +34,7 @@ R12Team455::Application.routes.draw do
 
     resources :uploads, only: [:create]
 
-    resources :sessions, only: [:new]
+    resources :sessions, only: [:create]
 
   end
 

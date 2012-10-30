@@ -4,7 +4,9 @@ describe Api::SessionsController do
   
   context '#new' do
     it 'should create new session' do
-      get :new
+      post :new
+      ActiveSupport::JSON.decode(response.body)['status'].should == 200
+      ActiveSupport::JSON.decode(response.body)['message'].should == 'Successfully logged in'
     end
   end
 
