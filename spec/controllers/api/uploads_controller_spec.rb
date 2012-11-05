@@ -13,6 +13,8 @@ describe Api::UploadsController do
       artist: 'Metallica',
       file: fixture_file_upload("/assets/songs/03 For Whom the Bell Tolls.mp3")
     }
+    @user = FactoryGirl.create(:user)
+    sign_in(:user, @user)
   end
 
   context '#create' do

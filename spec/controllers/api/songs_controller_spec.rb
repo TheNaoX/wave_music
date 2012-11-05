@@ -3,8 +3,9 @@ require 'spec_helper'
 describe Api::SongsController do
 
   before(:each) do 
-    @user = FactoryGirl.create(:user)
     @song = FactoryGirl.create(:song)
+    @user = FactoryGirl.create(:user)
+    sign_in(:user, @user)
   end
 
   context '#index' do

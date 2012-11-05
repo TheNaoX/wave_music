@@ -20,7 +20,7 @@ Spork.prefork do
     config.use_transactional_fixtures = true
 
     config.infer_base_class_for_anonymous_controllers = false
-
+    config.include Devise::TestHelpers, type: :controller
     config.order = "random"
 
     config.before(:suite) do
