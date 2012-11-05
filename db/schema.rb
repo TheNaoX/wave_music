@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030185807) do
+ActiveRecord::Schema.define(:version => 20121014011130) do
 
   create_table "playlist_songs", :force => true do |t|
     t.integer  "song_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20121030185807) do
   end
 
   create_table "users", :force => true do |t|
+    t.string   "username",               :default => "", :null => false
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
@@ -58,5 +59,6 @@ ActiveRecord::Schema.define(:version => 20121030185807) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
 end
