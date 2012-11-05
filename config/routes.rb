@@ -1,7 +1,5 @@
 R12Team455::Application.routes.draw do
   root :to => 'pages#index'
-
-  devise_for :api_users
   devise_for :users
 
   resources :pages, only: [:index]

@@ -1,5 +1,8 @@
 class Api::SessionsController < ApplicationController
   skip_before_filter :authenticate_user!
+
+  respond_to :json
+
   def create
     begin
       resource = User.find_for_database_authentication(email: params[:user_login][:email])
