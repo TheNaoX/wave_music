@@ -21,8 +21,13 @@
 
 == API guide
 
-  GET    /api/songs/:id/stream          # Opens the stream for the song provided by id
-  GET    /api/songs                     # Get the list of songs stored in the application
+=== Songs interface
+
+There are many ways to interact with the songs API interface, the most important thing is that the interface provides you the data as JSON format, which is the most common and easy way to create JavaScript objects from API response.
+
+The following route provides you the entire list of songs stored into the application library
+
+  GET    /api/songs
   GET    /api/songs/:id                 # Display the information of the song provided by id
   GET    /api/songs/search              # Search playlist by name send array as name: 'my query'
 
