@@ -7,6 +7,8 @@ describe Api::PlaylistsController do
     @playlist = FactoryGirl.create(:playlist) 
     @song = FactoryGirl.create(:song)
     @playlist_song = PlaylistSong.create(song_id: @song.id, playlist_id: @playlist.id)
+    @user = FactoryGirl.create(:user)
+    sign_in(:user, @user)
   end
 
   context '#index' do
