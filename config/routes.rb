@@ -1,11 +1,13 @@
 R12Team455::Application.routes.draw do
-  resources :pages, only: [:index]
+  root :to => 'pages#index'
 
+  devise_for :api_users
   devise_for :users
+
+  resources :pages, only: [:index]
 
   resources :uploads, only: [:index]
 
-  root :to => 'pages#index'
 
   namespace :api do
 
