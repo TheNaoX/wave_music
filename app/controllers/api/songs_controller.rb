@@ -1,5 +1,4 @@
 class Api::SongsController < ApplicationController
-  doorkeeper_for :stream
   respond_to :json
 
   def index
