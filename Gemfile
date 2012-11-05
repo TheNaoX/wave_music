@@ -16,9 +16,6 @@ gem 'lastfm'
 gem 'paperclip'
 gem 'sass-rails',   '~> 3.2.3'
 
-# OAuth2 authentication for securing the API
-gem 'doorkeeper'
-
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
