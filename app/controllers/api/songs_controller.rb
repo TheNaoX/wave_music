@@ -6,7 +6,7 @@ class Api::SongsController < ApplicationController
     unless @songs.empty?
       render_for_api :music, json: @songs
     else
-      respond_with message: 'The music library is empty...'
+      render json: { message: 'The music library is empty...' }
     end
   end
 
