@@ -1,4 +1,5 @@
 class Api::UploadsController < ApplicationController
+  doorkeeper_for :all
 
   def create
     unless params[:file].nil? or params[:name].nil?

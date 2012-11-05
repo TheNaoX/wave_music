@@ -1,4 +1,5 @@
 class Api::SessionsController < ApplicationController
+  doorkeeper_for :all
   skip_before_filter :authenticate_user!
 
   respond_to :json
