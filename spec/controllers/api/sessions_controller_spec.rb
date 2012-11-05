@@ -24,9 +24,16 @@ describe Api::SessionsController do
 
   context '#destroy' do
     it 'should destroy session when requested' do
-      delete :destroy
-      ActiveSupport::JSON.decode(response.body)['status'] == 200
-      ActiveSupport::JSON.decode(response.body)['message'] == 'Successfully signed out!'
+      post :create, user_login: { email: 'user@example.com', password: 'supersecret' }
+      delete :destroy, id: @user
+      ActiveSupport::JSON.decode(response.body)['status'].should == 200
+      ActiveSupport::JSON.decode(response.body)['message'].should == 'Successfully logged out!'
+    end
+
+    it 'should reject destroy session if user is not logged in' do
+      delete :destroy, id: @user
+      ActiveSupport::JSON.decode(response.body)['status'].should == 500
+      ActiveSupport::JSON.decode(response.body)['message'].should == 'You need to be logged in'
     end
   end
 
