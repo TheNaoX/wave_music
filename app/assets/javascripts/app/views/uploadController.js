@@ -5,6 +5,8 @@ RB.UploadController = Backbone.View.extend({
   startUpload: function(data){
     var xhr      = new XMLHttpRequest();
     var formPost = new FormData();
+    var token    = $('meta[name=csrf-token]').attr('content');
+    console.log(token);
 
     formPost.append("file", data.file);
     formPost.append("artist", data.artist);
@@ -14,6 +16,7 @@ RB.UploadController = Backbone.View.extend({
     xhr.upload.addEventListener("load", $.proxy(this.onComplete, this), false);
 
     xhr.open('POST', '/api/uploads');
+    xhr.setRequestHeader('X-CSRF-Token', token);
 
     xhr.send(formPost);
   },

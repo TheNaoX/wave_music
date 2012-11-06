@@ -11,10 +11,9 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require libs/jquery
-//= require jquery_ujs
+//= require libs/rails
 //= require libs/underscore
 //= require libs/backbone
-//= require libs/backbonerailsauthtokenadapter
 //= require main
 //= require app/models/song
 //= require app/models/playlist
