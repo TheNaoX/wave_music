@@ -34,5 +34,3 @@ group :test do
   gem 'rb-fsevent', '~> 0.9.1'
   gem 'simplecov'
 end
-
-gem 'jquery-rails'
