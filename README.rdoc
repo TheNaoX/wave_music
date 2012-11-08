@@ -144,6 +144,7 @@ This is the feature set of playlists:
 You can create a new playlist with the following url and method
 
   POST   /api/playlists/
+
 And send the `data` as JSON like the following one:
 
   { name: 'My favorite songs' }
@@ -174,7 +175,7 @@ And this is the required data
 
 Exists this url for logging in users and have access to all the features described below
   
-  POST /sessions/new
+  POST /api/sessions
 
 With data defined as following
 
@@ -182,7 +183,7 @@ With data defined as following
 
 And destroying sessions:
 
-  DELETE /sessions/destroy
+  DELETE /api/sessions/:id
 
 With data:
 
