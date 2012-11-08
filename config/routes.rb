@@ -36,6 +36,8 @@ R12Team455::Application.routes.draw do
 
     resources :sessions, only: [:create, :destroy]
 
+    resources :registrations, only: [:create]
+
   end
 
 end
