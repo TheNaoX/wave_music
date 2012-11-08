@@ -27,28 +27,168 @@ There are many ways to interact with the songs API interface, the most important
 
 The following route provides you the entire list of songs stored into the application library
 
-  GET    /api/songs
-  GET    /api/songs/:id                 # Display the information of the song provided by id
-  GET    /api/songs/search              # Search playlist by name send array as name: 'my query'
+  GET /api/songs
 
-  GET    /api/playlists                 # Gets the list of playlists
-  POST   /api/playlists                 # Saves new playlist without save songs in it, playlist: {name: 'My playlist'}
-  POST   /api/playlists/:id/add_songs   # Adds songs to the playlist provided by id, and post the song_ids as array {songs:[1,2,3,4,5]}
-  GET    /api/playlists/:id             # Displays the current playlist
-  GET    /api/playlists/search          # Search playlist by name send array as name: 'my query'
+And this is the sample response:
 
-  POST   /api/uploads                   # Uploads a song as song: {name: 'my song', file: 'url of the song' }
+  {
+    "songs": [
+        {
+            "id": 1,
+            "name": "Fade to black",
+            "artist": "Metallica",
+            "album": "Ride the Lightning",
+            "album_art_url": "/system/songs/album_arts/000/000/001/large/77094516.png?1352223754",
+            "filename": "04_Fade_To_Black.mp3",
+            "duration": "415000",
+            "url": "/uploads/song/file/1/04_Fade_To_Black.mp3"
+        },
+        {
+            "id": 2,
+            "name": "Creeping death",
+            "artist": "Metallica",
+            "album": "Ride the Lightning",
+            "album_art_url": "/system/songs/album_arts/000/000/002/large/77094516.png?1352224213",
+            "filename": "07_Creeping_Death.mp3",
+            "duration": "396000",
+            "url": "/uploads/song/file/2/07_Creeping_Death.mp3"
+        },
+        {
+            "id": 3,
+            "name": "Monkey Punch",
+            "artist": "Avesta",
+            "album": "Unknown Album",
+            "album_art_url": "/system/songs/album_arts/000/000/003/large/default_album_300_g4.png?1352351384",
+            "filename": "Avesta_-_Monkey_Punch__Original_Mix_.mp3",
+            "duration": null,
+            "url": "/uploads/song/file/3/Avesta_-_Monkey_Punch__Original_Mix_.mp3"
+        },
+        {
+            "id": 4,
+            "name": "I just had sex",
+            "artist": "The Lonley Island",
+            "album": "Unknown Album",
+            "album_art_url": "/system/songs/album_arts/000/000/004/large/default_album_300_g4.png?1352351793",
+            "filename": "03._I_Just_Had_Sex__Ft._Akon__iM1.mp3",
+            "duration": null,
+            "url": "/uploads/song/file/4/03._I_Just_Had_Sex__Ft._Akon__iM1.mp3"
+        }
+    ]
+  }
 
-  Requerimientos:
-  * Autenticacion de usuarios {username, email, password}
-    ** Perfil de usuarios {playlists}
-    ** Los usuarios deben ser capaces de escuchar playlist de otros usuarios y compartir las suyas
-  * Autenticacion de API
-    ** cada request urlbase + ?name=show&auth_token=asdkjfh283989dhf234jfbqd
-  * generar una libreria en javascript
-    ** function song(id) {bla bla bla} => new_song = song(1); => new_song.play || .name
+You can test this response by typing in your browser adding the following url after you are logged in the application.
+  
+  http://wave_music.colimacolectivo.com/api/songs
 
-And enjoy!
+Then using the previous ids you can get a specific song attributes
+
+  GET    /api/songs/:id
+
+And this is the response
+  
+  http://wave_music.colimacolectivo.com/api/songs/1
+  {
+    "song": {
+        "id": 1,
+        "name": "Fade to black",
+        "artist": "Metallica",
+        "album": "Ride the Lightning",
+        "album_art_url": "/system/songs/album_arts/000/000/001/large/77094516.png?1352223754",
+        "filename": "04_Fade_To_Black.mp3",
+        "duration": "415000",
+        "url": "/uploads/song/file/1/04_Fade_To_Black.mp3"
+    }
+  }
+
+This is the search function and it's called by `GET` http method:
+
+  GET    /api/songs/search?name=something
+
+And this is the response, returns the songs as array list
+
+  http://wave_music.colimacolectivo.com/api/songs/search?name=fade
+
+  {
+    "songs": [
+        {
+            "id": 1,
+            "name": "Fade to black",
+            "artist": "Metallica",
+            "album": "Ride the Lightning",
+            "album_art_url": "/system/songs/album_arts/000/000/001/large/77094516.png?1352223754",
+            "filename": "04_Fade_To_Black.mp3",
+            "duration": "415000",
+            "url": "/uploads/song/file/1/04_Fade_To_Black.mp3"
+        }
+    ]
+  }
+
+=== Playlists interface
+
+Technincally it has the same behavior as songs interface but instead of doing requests with `/api/songs` you should do it with `/api/playlists`
+
+The generic response is:
+  {
+    "playlists": [
+        {
+            "id": 1,
+            "name": 'Favorite songs',
+            "user_id": 1,
+            "songs": [1,2,3,4,5] // notice this is an array of ids, you can fetch that songs info by id with "GET /api/songs/:id" for each one of those
+        }
+    ]
+  }
+
+This is the feature set of playlists:
+
+You can create a new playlist with the following url and method
+
+  POST   /api/playlists/
+And send the `data` as JSON like the following one:
+
+  { name: 'My favorite songs' }
+
+With the following response:
+
+  { status: 200, message: 'Successfully created playlist...', playlist: 1 }
+
+This one songs to the playlist defined by id:
+
+  POST   /api/playlists/:id/add_songs
+
+And send the data as JSON like:
+
+  {id: playlist_id, songs: [1,2,3,4,5]} // as array of ids
+
+=== Uploading songs
+
+You can upload songs with a POST request as JSON, but it takes time to complete so you can create a event handler in order to manage timeouts and javascript connections to wait until the upload is done, or a callback
+
+  POST   /api/uploads
+
+And this is the required data
+
+  {name: 'my song', artist: 'my artsit', file: some sort of file attached }
+
+=== Logging users
+
+Exists this url for logging in users and have access to all the features described below
+  
+  POST /sessions/new
+
+With data defined as following
+
+  {user_login: { email: 'user@example.com', password: 'supersecret' }}
+
+And destroying sessions:
+
+  DELETE /sessions/destroy
+
+With data:
+
+  {id: user_id}
+
+And that's it, if you have suggestions please feel free to add issues and email me cavjzz@gmail.com in order to let me know if something is behaving wrong or documentation is incomplete
 
 Copyright (C) 2012  RubyFloyd
 
