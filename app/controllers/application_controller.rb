@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   private
+
   def set_access_control_headers
     headers['Access-Control-Allow-Origin'] = host
     headers['Access-Control-Request-Method'] = '*'

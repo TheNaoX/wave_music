@@ -1,4 +1,5 @@
 class Api::UploadsController < ApplicationController
+  before_filter :verified_request?, only: [:create]
 
   def create
     unless params[:file].nil? or params[:name].nil?
@@ -27,4 +28,7 @@ class Api::UploadsController < ApplicationController
     render json: { status: 400, message: "We're sorry but something went wrong" }
   end
 
+  def verified_request?
+    true
+  end
 end
