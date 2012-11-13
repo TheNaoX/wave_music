@@ -1,6 +1,9 @@
 - unless @applications.empty?
   - @applications.each do |app|
+    %label Name:
     = app.application_name
+    %br
+    %label Access token: 
     = app.access_token
 -else
   %p Add new application

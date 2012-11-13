@@ -25,6 +25,7 @@ describe DevelopersController do
   context '#create' do
     it 'should register a new application with access token' do
       post :create, api_access: {application_name:'My application'} 
+      @user.api_accesses.last.application_name.should == "My application"
     end
   end
 
