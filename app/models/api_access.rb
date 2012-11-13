@@ -1,6 +1,7 @@
 class ApiAccess < ActiveRecord::Base
   belongs_to :user
   before_create :generate_api_access_token
+  validates_presence_of :application_name
   attr_accessible :application_name
 
   private

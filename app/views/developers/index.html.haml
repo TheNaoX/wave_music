@@ -1,0 +1,8 @@
+- unless @applications.empty?
+  - @applications.each do |app|
+    = app.application_name
+    = app.access_token
+-else
+  %p Add new application
+
+= button_to 'Create new application', new_developer_path, method: 'get'
