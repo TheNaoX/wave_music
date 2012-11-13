@@ -21,6 +21,14 @@
 
 == API guide
 
+=== Before start
+
+Notice that you need to add the authentication token to every request appended at the end of the url, like: `http://wave_music.colimacolectivo.com/api/songs?auth_token=JbeRuU5pYPTbQ2FZWdE5` which is returned as json when you open a new session.
+
+==== API authentication
+
+Also you need to register your application on [developers page](http://wave_music.colimacolectivo.com/developers), and you'll receive your access token and is necessary to include it on each request like, `http://wave_music.colimacolectivo.com/api/songs?auth_token=JbeRuU5pYPTbQ2FZWdE5&access_token=5Ome50rt0ft0k3n`
+
 === Songs interface
 
 There are many ways to interact with the songs API interface, the most important thing is that the interface provides you the data as JSON format, which is the most common and easy way to create JavaScript objects from API response.
