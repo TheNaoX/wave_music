@@ -6,6 +6,7 @@ R12Team455::Application.routes.draw do
 
   resources :uploads, only: [:index]
 
+  resources :developers
 
   namespace :api do
 
