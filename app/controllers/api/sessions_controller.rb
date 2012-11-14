@@ -9,7 +9,7 @@ class Api::SessionsController < ApplicationController
       return invalid_login_attempt unless resource
       if resource.valid_password? params[:user_login][:password]
         sign_in(:user, resource)
-        render json: { status: 200, message: 'Successfully logged in', user: resource }
+        render json: { status: 200, message: 'Successfully logged in', user: {username: resource.username, email: resource.email, created_at: resource.created_at, updated_at: resource.updated_at, authentication_token: resource.authentication_token }}
       else
         invalid_login_attempt
       end
