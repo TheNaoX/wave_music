@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Wave music by TheNaoX</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Wave music</h1>
+        <h2>This is the project from rails rumble that has music streaming</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/TheNaoX/wave_music/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/TheNaoX/wave_music/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/TheNaoX/wave_music" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>RubyFloyd</h1>
+
+<h2>About the project</h2>
+
+<p><em>RubyFloyd</em> is a project for RailsRumble contest</p>
+
+<h3>Contributors</h3>
+
+<ul>
+<li>
+<a href="https://github.com/ianrgz">Ian Rodriguez</a> <strong>the full stack</strong>
+</li>
+<li>
+<a href="https://github.com/TheNaoX">Antonio Chávez</a> <strong>the back-end</strong>
+</li>
+<li>
+<a href="https://github.com/narcisoguillen">Narciso Guillén</a> <strong>JavaScript wizard</strong>
+</li>
+<li>
+<a href="https://github.com/tonatiuh">Tonatiuh Nuñez</a> <strong>the designer</strong>
+</li>
+</ul><h2>Installation</h2>
+
+<pre><code>git clone git@github.com:railsrumble/r12-team-455.git
+cp config/database.yml.sample config/database.yml # Add your postgres configuration
+bundle install
+rake db:migrate
+</code></pre>
+
+<h2>API guide</h2>
+
+<h3>Before start</h3>
+
+<p>Notice that you need to add the authentication token to every request appended at the end of the url, like: <code>http://wave_music.colimacolectivo.com/api/songs?auth_token=JbeRuU5pYPTbQ2FZWdE5</code> which is returned as json when you open a new session.</p>
+
+<h4>API authentication</h4>
+
+<p>Also you need to register your application on <a href="http://wave_music.colimacolectivo.com/developers">developers page</a>, and you'll receive your access token and is necessary to include it on each request like, <code>http://wave_music.colimacolectivo.com/api/songs?auth_token=JbeRuU5pYPTbQ2FZWdE5&amp;access_token=5Ome50rt0ft0k3n</code></p>
+
+<p>NOTICE THIS IS NOT YET IMPLEMENTED DON'T WORRY</p>
+
+<h3>Songs interface</h3>
+
+<p>There are many ways to interact with the songs API interface, the most important thing is that the interface provides you the data as JSON format, which is the most common and easy way to create JavaScript objects from API response.</p>
+
+<p>The following route provides you the entire list of songs stored into the application library</p>
+
+<pre><code>GET /api/songs
+</code></pre>
+
+<p>And this is the sample response:</p>
+
+<pre><code>{
+  "songs": [
+    {
+        "id": 1,
+        "name": "Fade to black",
+        "artist": "Metallica",
+        "album": "Ride the Lightning",
+        "album_art_url": "/system/songs/album_arts/000/000/001/large/77094516.png?1352223754",
+        "filename": "04_Fade_To_Black.mp3",
+        "duration": "415000",
+        "url": "/uploads/song/file/1/04_Fade_To_Black.mp3"
+    },
+    {
+        "id": 2,
+        "name": "Creeping death",
+        "artist": "Metallica",
+        "album": "Ride the Lightning",
+        "album_art_url": "/system/songs/album_arts/000/000/002/large/77094516.png?1352224213",
+        "filename": "07_Creeping_Death.mp3",
+        "duration": "396000",
+        "url": "/uploads/song/file/2/07_Creeping_Death.mp3"
+    },
+    {
+        "id": 3,
+        "name": "Monkey Punch",
+        "artist": "Avesta",
+        "album": "Unknown Album",
+        "album_art_url": "/system/songs/album_arts/000/000/003/large/default_album_300_g4.png?1352351384",
+        "filename": "Avesta_-_Monkey_Punch__Original_Mix_.mp3",
+        "duration": null,
+        "url": "/uploads/song/file/3/Avesta_-_Monkey_Punch__Original_Mix_.mp3"
+    },
+    {
+        "id": 4,
+        "name": "I just had sex",
+        "artist": "The Lonley Island",
+        "album": "Unknown Album",
+        "album_art_url": "/system/songs/album_arts/000/000/004/large/default_album_300_g4.png?1352351793",
+        "filename": "03._I_Just_Had_Sex__Ft._Akon__iM1.mp3",
+        "duration": null,
+        "url": "/uploads/song/file/4/03._I_Just_Had_Sex__Ft._Akon__iM1.mp3"
+    }
+  ]
+}
+</code></pre>
+
+<p>You can test this response by typing in your browser adding the following url after you are logged in the application.</p>
+
+<pre><code>http://wave_music.colimacolectivo.com/api/songs
+</code></pre>
+
+<p>Then using the previous ids you can get a specific song attributes</p>
+
+<pre><code>GET    /api/songs/:id
+</code></pre>
+
+<p>And this is the response</p>
+
+<pre><code>http://wave_music.colimacolectivo.com/api/songs/1
+{
+  "song": {
+    "id": 1,
+    "name": "Fade to black",
+    "artist": "Metallica",
+    "album": "Ride the Lightning",
+    "album_art_url": "/system/songs/album_arts/000/000/001/large/77094516.png?1352223754",
+    "filename": "04_Fade_To_Black.mp3",
+    "duration": "415000",
+    "url": "/uploads/song/file/1/04_Fade_To_Black.mp3"
+  }
+}
+</code></pre>
+
+<p>This is the search function and it's called by <code>GET</code> http method:</p>
+
+<pre><code>GET    /api/songs/search?name=something
+</code></pre>
+
+<p>And this is the response, returns the songs as array list</p>
+
+<pre><code>http://wave_music.colimacolectivo.com/api/songs/search?name=fade
+
+{
+  "songs": [
+    {
+        "id": 1,
+        "name": "Fade to black",
+        "artist": "Metallica",
+        "album": "Ride the Lightning",
+        "album_art_url": "/system/songs/album_arts/000/000/001/large/77094516.png?1352223754",
+        "filename": "04_Fade_To_Black.mp3",
+        "duration": "415000",
+        "url": "/uploads/song/file/1/04_Fade_To_Black.mp3"
+    }
+  ]
+}
+</code></pre>
+
+<h3>Playlists interface</h3>
+
+<p>Technincally it has the same behavior as songs interface but instead of doing requests with <code>/api/songs</code> you should do it with <code>/api/playlists</code></p>
+
+<p>The generic response is:</p>
+
+<pre><code>{
+  "playlists": [
+    {
+        "id": 1,
+        "name": 'Favorite songs',
+        "user_id": 1,
+        "songs": [1,2,3,4,5] // notice this is an array of ids, you can fetch that songs info by id with "GET /api/songs/:id" for each one of those
+    }
+  ]
+}
+</code></pre>
+
+<p>This is the feature set of playlists:</p>
+
+<p>You can create a new playlist with the following url and method</p>
+
+<pre><code>POST   /api/playlists/
+</code></pre>
+
+<p>And send the <code>data</code> as JSON like the following one:</p>
+
+<pre><code>{ name: 'My favorite songs' }
+</code></pre>
+
+<p>With the following response:</p>
+
+<pre><code>{ status: 200, message: 'Successfully created playlist...', playlist: 1 }
+</code></pre>
+
+<p>This one songs to the playlist defined by id:</p>
+
+<pre><code>POST   /api/playlists/:id/add_songs
+</code></pre>
+
+<p>And send the data as JSON like:</p>
+
+<pre><code>{id: playlist_id, songs: [1,2,3,4,5]} // as array of ids
+</code></pre>
+
+<h3>Uploading songs</h3>
+
+<p>You can upload songs with a POST request as JSON, but it takes time to complete so you can create a event handler in order to manage timeouts and javascript connections to wait until the upload is done, or a callback</p>
+
+<pre><code>POST   /api/uploads
+</code></pre>
+
+<p>And this is the required data</p>
+
+<pre><code>{name: 'my song', artist: 'my artsit', file: some sort of file attached }
+</code></pre>
+
+<h3>Logging users</h3>
+
+<p>Exists this url for logging in users and have access to all the features described below</p>
+
+<pre><code>POST /api/sessions
+</code></pre>
+
+<p>With data defined as following</p>
+
+<pre><code>{user_login: { email: 'user@example.com', password: 'supersecret' }}
+</code></pre>
+
+<p>And destroying sessions:</p>
+
+<pre><code>DELETE /api/sessions/:id
+</code></pre>
+
+<p>With data:</p>
+
+<pre><code>{id: user_id}
+</code></pre>
+
+<p>And that's it, if you have suggestions please feel free to add issues and email me <a href="mailto:cavjzz@gmail.com">cavjzz@gmail.com</a> in order to let me know if something is behaving wrong or documentation is incomplete</p>
+
+<p>Copyright (C) 2012  RubyFloyd</p>
+
+<p>This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License
+along with this program.  If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
